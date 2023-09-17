@@ -5,13 +5,12 @@ import {
   createWorkController,
   getWorkController,
   updateWorkController,
-} from "./controllers/WorksController.js";
+} from "./src/controllers/WorksController.js";
 import mongoose from "mongoose";
 
 const app = express();
 app.use(express.json());
 
-console.log("work", process.env.PORT);
 const port = process.env.PORT;
 app.use(cors());
 
