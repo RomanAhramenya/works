@@ -12,14 +12,17 @@ export const getWorkController = async (req, res) => {
         day: Number(req.query.date.split(".")[1]),
         year: Number(req.query.date.split(".")[2]),
       });
-      res.json(work);
+      return res.json(work);
     }
     if (variant === "month") {
       const work = await WorkModel.find({
         month: Number(req.query.date.split(".")[0]),
         year: Number(req.query.date.split(".")[1]),
       });
-      res.json(work);
+      return res.json(work);
+    } else {
+      const work = await WorkModel.find();
+      return res.json(work);
     }
   } catch (error) {
     res.status(500).json({
@@ -64,9 +67,6 @@ export const updateWorkController = async (req, res) => {
         _id: postId,
       },
       {
-        month: req.body.month,
-        day: req.body.day,
-        year: req.body.year,
         distanceStart: req.body.distanceStart,
         distanceEnd: req.body.distanceEnd,
         literStart: req.body.literStart,
